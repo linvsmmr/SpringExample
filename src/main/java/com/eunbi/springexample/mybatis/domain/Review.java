@@ -3,6 +3,7 @@ package com.eunbi.springexample.mybatis.domain;
 import java.time.LocalDateTime;
 
 public class Review {
+
     private int id;
     private int storeId;
     private String menu;

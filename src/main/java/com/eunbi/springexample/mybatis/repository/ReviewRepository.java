@@ -8,17 +8,17 @@ import java.util.List;
 
 @Mapper
 public interface ReviewRepository {
-    // new review 테이블에서 전달받은 id와 일치하는 행 조회
-    public Review selectReview(int id);
 
-    public int insertReview(@Param("storeId") int storeId
+    // new_review 테이블에서  전달받은 id와 일치하는 행 조회
+    public Review selectReview(@Param("id") int id);
+
+    // 하나의 행을 insert 하는 기능
+    public int insertReview(
+            @Param("storeId") int storeId
             , @Param("menu") String menu
             , @Param("userName") String userName
             , @Param("point") double point
             , @Param("review") String review);
-
-    //insert, update, delete 모두 리턴타입 int로 지정(완료된 행의 개수를 리턴할 뿐이니까)
-
 
     public int insertReviewByObject(Review review);
 
