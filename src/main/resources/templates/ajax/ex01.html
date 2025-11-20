@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+</head>
+<body>
+    <h2>AJAX</h2>
+
+    <form method="get" action="/ajax/person">
+        <label>이름</label><input type="text" name="name" id="nameInput">
+        <label>생년월일</label><input type="text" name="birthday" id="birthdayInput">
+        <button type="submit" id="inputBtn">입력</button>
+    </form>
+
+    <h3>이름 : <span id="nameSpan">차은우</span></h3>
+    <h3>나이 : <span id="ageSpan">100</span></h3>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $("#inputBtn").on("click",function () {
+            let name = $("#nameInput").val();
+            let birthday = $("#birthdayInput").val();
+
+            if (name == "") {
+                alert("이름을 입력하세요")
+                return ;
+            }
+
+            if (birthday == "") {
+                alert("생년월일을 입력하세요")
+                return ;
+            }
+
+            $.ajax({
+                type:"get"
+                ,url: "/ajax/person"
+                ,data:{"name" : name, "birthday" : birthday}
+                ,success:function (response) {
+                    // 응답이ㅣ 정상적으로 전달된 경우
+                    // alert(response.name + " " + response.age);
+
+                    $("#nameSpan").text(response.name);
+                    $("#ageSpan").text(response.age);
+                }
+                , error: function () { alert("에러!")}
+            })
+
+
+
+        })
+    </script>
+</body>
+</html>
