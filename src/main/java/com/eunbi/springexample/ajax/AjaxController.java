@@ -14,17 +14,19 @@ import java.util.Map;
 @Controller
 public class AjaxController {
 
-
-    // response에 데이터(json)을 담는 페이지를 API라고 칭합니다.
-    // 이름과 생년월일을 전달받고, 이름과 나이를 JSON으로 응답에 담는다.
-    @GetMapping("/person")
+    // response에 데이터(JSON)를 담는 페이지
+    // API <---> View(HTML)
+    // 이름과 생년월일을 전달 받고, 이름과 나이를 JSON으로 응답에 담는다
     @ResponseBody
+    @GetMapping("/person")
     public Map<String, Object> personInfo(
             @RequestParam("name") String name
-            ,@RequestParam("birthday") String birthday) {
+            , @RequestParam("birthday") String birthday) {  // 20030523
 
-        int year = Integer.parseInt(birthday.substring(0,4));
+        int year = Integer.parseInt(birthday.substring(0, 4));
         int age = 2025 - year + 1;
+
+        // {"name":"유재석", "age":28}
 
         Map<String, Object> personMap = new HashMap<>();
 
@@ -32,12 +34,39 @@ public class AjaxController {
         personMap.put("age", age);
 
         return personMap;
-    }
 
+    }
 
 
     @GetMapping("/ex01")
     public String ex01() {
         return "ajax/ex01";
     }
+//
+//
+//    // response에 데이터(json)을 담는 페이지를 API라고 칭합니다.
+//    // 이름과 생년월일을 전달받고, 이름과 나이를 JSON으로 응답에 담는다.
+//    @GetMapping("/person")
+//    @ResponseBody
+//    public Map<String, Object> personInfo(
+//            @RequestParam("name") String name
+//            ,@RequestParam("birthday") String birthday) {
+//
+//        int year = Integer.parseInt(birthday.substring(0,4));
+//        int age = 2025 - year + 1;
+//
+//        Map<String, Object> personMap = new HashMap<>();
+//
+//        personMap.put("name", name);
+//        personMap.put("age", age);
+//
+//        return personMap;
+//    }
+//
+//
+//
+//    @GetMapping("/ex01")
+//    public String ex01() {
+//        return "ajax/ex01";
+//    }
 }
