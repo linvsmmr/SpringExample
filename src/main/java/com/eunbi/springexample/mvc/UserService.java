@@ -34,4 +34,14 @@ public class UserService {
         int count = userRepository.insertUserByObject(user);
         return count;
     }
+
+
+    public boolean isDuplicateEmail(String email) {
+        int count = userRepository.countUserByEmail(email);
+        if (count == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

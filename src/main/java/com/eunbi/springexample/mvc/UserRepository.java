@@ -2,6 +2,7 @@ package com.eunbi.springexample.mvc;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Mapper
 public interface UserRepository {
@@ -16,4 +17,6 @@ public interface UserRepository {
             , @Param("introduce") String introduce);
 
     public int insertUserByObject(User user);
+
+    public int countUserByEmail(@RequestParam("email") String email);
 }

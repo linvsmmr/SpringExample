@@ -21,6 +21,16 @@
         LIMIT 1
     </select>
 
+    <select id="countUserByEmail" parameterType="string"
+    resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            `new_user`
+        WHERE
+            `email` = #{email}
+    </select>
+
     <insert id="insertUser" parameterType="map">
         INSERT INTO
         `new_user`
@@ -35,5 +45,27 @@
             #{email},
             #{introduce}
         )
+    </insert>
+
+
+    <insert id="insertUserByObject"
+            parameterType="com.eunbi.springexample.mvc.User"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+            `new_user`
+        (
+          `name`
+        , `yyyymmdd`
+        , `email`
+        , `introduce`
+        )
+            VALUE
+            (
+            #{name}
+            , #{yyyymmdd}
+            , #{email}
+            , #{introduce}
+            )
+
     </insert>
 </mapper>
